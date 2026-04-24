@@ -405,17 +405,14 @@
 
         /* A) Getaran Agresif (Sangat Kuat) */
         @keyframes aggressive-shake {
-            0% { transform: translate(0, 0) rotate(0deg); }
-            10% { transform: translate(-8px, -8px) rotate(-4deg); }
-            20% { transform: translate(8px, 8px) rotate(4deg); }
-            30% { transform: translate(-10px, 0px) rotate(-6deg); }
-            40% { transform: translate(10px, -3px) rotate(6deg); }
-            50% { transform: translate(-8px, 8px) rotate(-4deg); }
-            60% { transform: translate(8px, -8px) rotate(4deg); }
-            70% { transform: translate(-10px, 3px) rotate(-6deg); }
-            80% { transform: translate(10px, 8px) rotate(6deg); }
-            90% { transform: translate(-8px, -3px) rotate(-4deg); }
-            100% { transform: translate(0, 0) rotate(0deg); }
+      
+  0%   { transform: translateX(0); }
+  25%  { transform: translateX(-2px); }
+  50%  { transform: translateX(2px); }
+  75%  { transform: translateX(-1px); }
+  100% { transform: translateX(0); }
+
+
         }
 
         /* B) Cahaya Amaran (Pulsing Red Glow Visual Kuat) */
@@ -631,10 +628,16 @@
             <input type="text" name="Tahun Pengajian" placeholder="202X/202X" required>
 
             <label>Semester</label>
-            <input type="tel" name="Semester" placeholder="Sem 1" required>
+            <input type="text" name="Semester" placeholder="Sem 1" required>
       
             <label>No. Telefon (WhatsApp)</label>
-            <input type="tel" name="No. HP" placeholder="01XXXXXXXX" pattern="0[0-9]{8,10}" required>
+            <input 
+              type="tel" 
+              id="phone" 
+              name="No. HP" 
+              placeholder="01XXXXXXXX" 
+              required
+            >
       
       <!--
              <label>Kehadiran Mesyuarat Tahunan Fakulti pada 30.3.2026 </label>
@@ -860,5 +863,19 @@
       this.value = this.value.toUpperCase();
     });
   </script>
+  <script>
+    const phoneInput = document.getElementById("phone");
+    
+    phoneInput.addEventListener("input", function () {
+      // Remove everything except numbers
+      let cleaned = this.value.replace(/\D/g, "");
+    
+      // Optional: limit length (Malaysia numbers usually 10–11 digits)
+      cleaned = cleaned.substring(0, 11);
+    
+      this.value = cleaned;
+    });
+    </script>
+    
 </body>
 </html>
