@@ -1,0 +1,813 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <link href="https://cdn.jsdelivr.net/npm/tom-select/dist/css/tom-select.css" rel="stylesheet">
+  <meta charset="UTF-8">
+  <link rel="icon" href="https://pbs.twimg.com/media/HGp1oNLakAAl5Ea?format=png&name=small" type="image/x-icon">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Borang Pendaftaran Rakan Muda Yadim UCB</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;600;700&display=swap" rel="stylesheet">
+  <style>
+    :root {
+      --primary-red: #6d00cc; /* Merah Universiti */
+      --dark-grey: #333333;
+      --light-grey: #f4f4f4;
+      --white: #ffffff;
+      --border-color: #dddddd;
+    }
+
+    .wrapper {
+  max-width: 900px;
+  width: 100%;
+  margin: 0 auto;
+  padding: 0 20px;
+  box-sizing: border-box;
+}
+
+    body {
+      font-family: 'Inter', sans-serif;
+      background-color: var(--light-grey);
+      color: var(--dark-grey);
+      margin: 0;
+      padding: 0; /* Penting: 0 supaya header rapat ke atas */
+      display: flex;
+      flex-direction: column;
+      align-items: center;
+      min-height: 100vh;
+    }
+
+    /* --- Bahagian Header dengan Imej Latar Belakang --- */
+    .header-bg {
+      width: 100%;
+      height: 400px; /* Ketinggian imej latar belakang */
+      /* GANTIKAN URL DI BAWAH DENGAN IMEJ ANDA */
+      background-image: linear-gradient(to bottom, rgba(68, 0, 204, 0.588), rgba(51, 51, 51, 0.8)), 
+                        url('https://www.ucbestari.edu.my/wp-content/uploads/2021/02/akademik11.jpg'); 
+      background-size: cover;
+      background-position: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      color: var(--white);
+      text-align: center;
+    }
+
+    .header-content h1 {
+      margin: 0;
+      font-size: 2rem;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 2px;
+      text-shadow: 2px 2px 4px rgba(0,0,0,0.5); /* Supaya teks jelas */
+    }
+
+    .header-content p {
+      margin: 5px 0 0;
+      font-size: 1rem;
+      opacity: 0.9;
+    }
+    /* -------------------------------------------------- */
+
+    .main-content {
+      width: 100%;
+      display: flex;
+      justify-content: center;
+      padding: 20px; /* Jarak antara header dan borang */
+      box-sizing: border-box;
+    }
+
+    .container {
+      background: var(--white);
+      max-width: 700px;
+      width: 100%;
+      padding: 30px;
+      border-radius: 12px;
+      box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+      position: relative;
+      margin-top: -50px; /* Borang akan 'naik' sedikit bertindih dengan header */
+      z-index: 10;
+    }
+
+    h2.form-title {
+      color: var(--primary-red);
+      text-align: center;
+      margin-bottom: 25px;
+      margin-top: 0;
+      font-weight: 700;
+      text-transform: uppercase;
+      letter-spacing: 1px;
+    }
+
+    label {
+      display: block;
+      font-weight: 600;
+      margin-bottom: 8px;
+      margin-top: 15px;
+      font-size: 0.9rem;
+    }
+
+    .hint {
+      font-size: 0.75rem;
+      color: #777;
+      margin-bottom: 5px;
+      display: block;
+    }
+
+    input, select {
+      width: 100%;
+      padding: 12px;
+      border: 1px solid var(--border-color);
+      border-radius: 6px;
+      box-sizing: border-box;
+      font-size: 1rem;
+      transition: border-color 0.3s;
+    }
+
+    input:focus, select:focus {
+      outline: none;
+      border-color: var(--primary-red);
+      box-shadow: 0 0 0 2px rgba(204, 0, 0, 0.1);
+    }
+
+    button {
+      width: 100%;
+      background-color: var(--primary-red);
+      color: white;
+      padding: 14px;
+      border: none;
+      border-radius: 6px;
+      font-size: 1rem;
+      font-weight: 600;
+      cursor: pointer;
+      margin-top: 25px;
+      transition: background 0.3s;
+    }
+
+    button:hover {
+      background-color: #a30000;
+    }
+
+    .contact-box {
+    background: #ffffff;
+    border-radius: 12px;
+    padding: 25px;
+    max-width: 400px;
+    margin: 20px auto;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+    text-align: center;
+    border: 1px solid #eee;
+}
+
+.contact-title {
+    font-size: 0.95rem;
+    color: #555;
+    margin-bottom: 15px;
+    font-weight: 600;
+}
+
+.contact-grid {
+    display: flex;
+    flex-direction: column;
+    gap: 12px;
+}
+
+/* Butang WhatsApp Utama */
+.wa-button.developer {
+    background-color: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 8px;
+    font-weight: bold;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    transition: all 0.3s ease;
+    box-shadow: 0 4px 0 #128c7e;
+}
+
+.wa-button.developer:hover {
+    transform: translateY(-2px);
+    background-color: #128c7e;
+    box-shadow: 0 2px 0 #075e54;
+}
+
+/* Group Butang Kecil (YDP & Setiausaha) */
+.admin-links {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 10px;
+}
+
+.admin-btn {
+    background-color: #f8f9fa;
+    color: #333;
+    text-decoration: none;
+    padding: 8px;
+    border-radius: 6px;
+    font-size: 0.85rem;
+    border: 1px solid #ddd;
+    transition: all 0.2s;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 5px;
+}
+
+.admin-btn:hover {
+    background-color: #e9ecef;
+    border-color: #bbb;
+}
+
+.icon {
+    font-size: 1.1rem;
+}
+
+    /* --- HEADER LOGOS --- */
+.header-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-bottom: 15px;
+}
+
+.header-logos img {
+  max-height: 70px;
+  object-fit: contain;
+}
+
+/* --- FOOTER --- */
+.footer {
+  width: 100%;
+  background: linear-gradient(135deg, #4e00b3, #000000);
+  color: #fff;
+  text-align: center;
+ 
+
+  margin-top: 30px;
+}
+
+/* logos in footer */
+.footer-logos {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 20px;
+  margin-top: 15px;
+  margin-bottom: 15px;
+ 
+  
+ 
+}
+
+.fokus {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: fit-content;
+  background-color: #fff;
+  border-radius: 10%;
+}
+
+.footer-logos img {
+  max-height: 50px;
+  
+}
+
+/* social icons */
+.social-links {
+  margin: 10px 0;
+}
+
+.social-links a {
+  margin: 0 10px;
+  font-size: 20px;
+  text-decoration: none;
+  color: white;
+  transition: 0.3s;
+}
+
+.social-links a:hover {
+  color: #cc0000;
+}
+
+/* address */
+.footer-address {
+  font-size: 0.8rem;
+  opacity: 0.8;
+  margin-top: 10px;
+  margin-bottom: 20px;
+}
+
+/* --- MOBILE --- */
+@media (max-width: 600px) {
+
+  .footer {
+    width: 100%;
+  }
+
+
+  .header-logos,
+  .footer-logos {
+    
+    gap: 10px;
+  }
+
+  .header-logos img {
+    max-height: 60px;
+  }
+
+  .footer-logos img {
+    max-height: 45px;
+  }
+}
+
+/* Gaya untuk ikon media sosial */
+.social-links {
+    text-align: center;
+    margin-top: 20px;
+    display: flex;
+    justify-content: center;
+    gap: 20px;
+  }
+
+  .social-links a {
+    color: var(--white); /* Warna asal kelabu */
+    font-size: 1.5rem;
+    transition: transform 0.3s, color 0.3s;
+    text-decoration: none;
+  }
+
+  /* Efek apabila tetikus lalu (hover) */
+  .social-links a:hover {
+    color: var(--primary-red); /* Bertukar merah apabila hover */
+    transform: translateY(-3px);
+  }
+
+  /* Warna khusus jika mahu */
+  .fa-tiktok:hover { color: #000000; } /* TikTok hitam */
+  .fa-globe:hover { color: #0056b3; }  /* Website biru */
+  .fa-whatsapp:hover { color: #25D366; }  /* Website biru */
+
+  /* Gaya untuk Butang TikTok */
+  /* Gaya untuk Butang TikTok Fixed */
+ /* 1. GAYA ASAS BUTANG TIKTOK (FIXED) */
+ .tiktok-fixed-btn {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            z-index: 9999;
+            
+            display: flex;
+            align-items: center;
+            background-color: #010101; /* Hitam TikTok */
+            color: #ffffff;
+            text-decoration: none;
+            padding: 15px 30px;
+            border-radius: 50px;
+            font-weight: bold;
+            font-size: 16px;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            
+            /* --- TRIGGER ANIMASI PADA PAGE LOAD --- */
+            /* Kita gunakan 3 animasi serentak:
+               1. aggressive-shake (bergegar kuat pada arrival)
+               2. intensive-glow (bercahaya amaran pada arrival)
+               3. slow-float (terapung sentiasa, tapi di-delay) */
+            animation: 
+                aggressive-shake 0.3s ease-in-out 10, /* Getar kuat 10 kali (~3 saat) */
+                intensive-glow 1s ease-in-out 3,     /* Cahaya nadi 3 kali (~3 saat) */
+                slow-float 3s ease-in-out infinite 3s; /* Mula terapung selepas 3 saat */
+        }
+
+        /* Ikon TikTok SVG */
+        .tiktok-fixed-btn svg {
+            width: 20px;
+            height: 20px;
+            margin-right: 12px;
+            fill: #ffffff;
+        }
+
+        /* 2. GAYA BILA HOVER (Kekalkan Getaran) */
+        .tiktok-fixed-btn:hover {
+            background-color: #fe2c55; /* Tukar warna ke Merah TikTok */
+            /* Trigger getaran pantas berterusan bila hover */
+            animation: aggressive-shake 0.2s ease-in-out infinite;
+            box-shadow: 0 0 20px rgba(254, 44, 85, 0.7); /* Cahaya merah lembut */
+        }
+
+        /* =========================================
+           3. DEFINISI KEYFRAMES (ANIMASI)
+           ========================================= */
+
+        /* A) Getaran Agresif (Sangat Kuat) */
+        @keyframes aggressive-shake {
+            0% { transform: translate(0, 0) rotate(0deg); }
+            10% { transform: translate(-8px, -8px) rotate(-4deg); }
+            20% { transform: translate(8px, 8px) rotate(4deg); }
+            30% { transform: translate(-10px, 0px) rotate(-6deg); }
+            40% { transform: translate(10px, -3px) rotate(6deg); }
+            50% { transform: translate(-8px, 8px) rotate(-4deg); }
+            60% { transform: translate(8px, -8px) rotate(4deg); }
+            70% { transform: translate(-10px, 3px) rotate(-6deg); }
+            80% { transform: translate(10px, 8px) rotate(6deg); }
+            90% { transform: translate(-8px, -3px) rotate(-4deg); }
+            100% { transform: translate(0, 0) rotate(0deg); }
+        }
+
+        /* B) Cahaya Amaran (Pulsing Red Glow Visual Kuat) */
+        @keyframes intensive-glow {
+            0% { 
+                box-shadow: 0 0 5px rgba(254, 44, 85, 0.3), 0 0 10px rgba(254, 44, 85, 0.2);
+            }
+            50% { 
+                /* Cahaya nadi yang sangat kuat dan luas */
+                box-shadow: 0 0 40px rgba(254, 44, 85, 1), 0 0 80px rgba(254, 44, 85, 0.6);
+            }
+            100% { 
+                box-shadow: 0 0 5px rgba(254, 44, 85, 0.3), 0 0 10px rgba(254, 44, 85, 0.2);
+            }
+        }
+
+        /* C) Terapung Perlahan (Selepas Arrival) */
+        @keyframes slow-float {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        /* Mobile Adjustments */
+        @media (max-width: 480px) {
+            .tiktok-fixed-btn {
+                bottom: 20px;
+                right: 20px;
+                padding: 12px 20px;
+                font-size: 14px;
+            }
+        }
+
+        #success-card h2 {
+    color: #2e7d32;
+    margin-bottom: 10px;
+}
+
+/* Bekas Maklumat Jawatankuasa */
+.committee-info {
+    background-color: #f9f9f9;
+    border-radius: 12px;
+    padding: 20px;
+    margin: 25px 0;
+    border: 1px solid #eee;
+    text-align: left; /* Nama lebih senang dibaca jika alignment ke kiri */
+}
+
+.member {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.member:last-child {
+    margin-bottom: 0;
+}
+
+/* Gaya Ikon */
+.member i {
+    font-size: 1.2rem;
+    color: #128c7e;
+    width: 25px;
+    text-align: center;
+}
+
+.details {
+    display: flex;
+    flex-direction: column;
+}
+
+.label {
+    font-size: 0.75rem;
+    text-transform: uppercase;
+    color: #888;
+    letter-spacing: 1px;
+    font-weight: bold;
+}
+
+.name {
+    font-size: 1rem;
+    color: #333;
+    font-weight: 600;
+}
+
+/* Butang Reload */
+.reload-btn {
+    background-color: #333;
+    color: white;
+    border: none;
+    padding: 12px 25px;
+    border-radius: 8px;
+    cursor: pointer;
+    font-weight: bold;
+    transition: 0.3s;
+}
+
+.reload-btn:hover {
+    background-color: #000;
+    transform: translateY(-2px);
+}
+
+    </style>
+</head>
+<body>
+    <div class="header-bg">
+        
+      <div class="wrapper">
+
+        <div class="header-content">
+          <div class="header-logos">
+            <div class="fokus" style="padding-right: 3%;  padding-top: 1%; padding-bottom: 1%;">
+              <img src="https://www.ucbestari.edu.my/wp-content/uploads/2023/12/ucb-logo-heading-2.webp">
+              <img src="https://pbs.twimg.com/media/HGp1oNLakAAl5Ea?format=png&name=small">
+            </div>
+         
+          </div>
+        
+          <h1>KELAB SEKRETARIAT RAKAN MUDA YADIM</h1>
+          <p>Borang Pendaftaran Ahli Sesi 2026/2027</p>
+        </div>
+      </div>
+     
+      </div>
+      
+      <div class="main-content">
+        <div class="container">
+          <h2 class="form-title">Maklumat Ahli Persatuan</h2>
+      
+          <form id="studentForm">
+            <label for="namaPelajar">Nama Penuh</label>
+            <input type="text" id="namaPelajar" name="Nama Pelajar" placeholder="Contoh: Ahmad Bin Ali" required>
+      
+            <label for="noMatrik">No. Matrik</label>
+            <input type="text" id="noMatrik" name="No.Matrik" placeholder="Contoh: BBA12345" required>
+      
+            <label for="programSelect">Program Pengajian</label>
+            <select id="programSelect" name="Program" required>
+              <option value="">Pilih Program</option>
+              <optgroup label="Asasi">
+                <option value="Asasi Pengurusan">Asasi Pengurusan</option>
+              </optgroup>
+              <optgroup label="Diploma">
+                <option>Diploma Perakaunan</option>
+                <option>Diploma Pengajian Perniagaan</option>
+                <option>Diploma Pengurusan Ladang</option>
+                <option>Diploma Kejururawatan</option>
+                <option>Diploma Pendidikan Awal Kanak-kanak</option>
+                <option>Diploma Pengurusan Hotel</option>
+                <option>Diploma Pelancongan</option>
+                <option>Diploma Seni Kulinari</option>
+              </optgroup>
+              <optgroup label="Ijazah Sarjana Muda">
+                <option>Ijazah Sarjana Muda Pentadbiran Perniagaan (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Ekonomi (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Kewangan Islam (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Teknologi Maklumat (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Sains Komputer (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Syariah (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Syariah dan Pengurusan (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Usuluddin Dakwah (Kepujian)</option>
+                <option>Ijazah Sarjana Muda Dakwah dan Pengurusan (Kepujian)</option>
+              
+              </optgroup>
+              <optgroup label="Pascasiswazah">
+                <option>Sarjana Pentadbiran Perniagaan (MBA)</option>
+                <option>Doktor Falsafah (Pengurusan & Pentadbiran)</option>
+              </optgroup>
+            </select>
+      
+            <label>Sesi Pengajian</label>
+            <span class="hint">Format: 2024/2025</span>
+            <input type="text" name="Tahun Pengajian" placeholder="202X/202X" required>
+
+            <label>Semester</label>
+            <input type="tel" name="Semester" placeholder="Sem 1" required>
+      
+            <label>No. Telefon (WhatsApp)</label>
+            <input type="tel" name="No. HP" placeholder="01XXXXXXXX" pattern="0[0-9]{8,10}" required>
+      
+      <!--
+             <label>Kehadiran Mesyuarat Tahunan Fakulti pada 30.3.2026 </label>
+            <select name="Kehadiran" required>
+              <option value="">-- Sila Pilih --</option>
+              <option value="Hadir">Hadir</option>
+              <option value="Tidak Hadir">Tidak Hadir</option>
+            </select>
+      
+      -->     
+      
+            <button type="submit">Hantar</button>
+            <p id="status" style="margin-top:10px; font-weight:bold;"></p>
+          </form>
+      
+          <div class="contact-box">
+            <p class="contact-title">Hubungi kami untuk sebarang pertanyaan:</p>
+            
+            <div class="contact-grid">
+               
+        
+                <div class="admin-links">
+                    <a href="https://wa.me/601137455814" target="_blank" class="admin-btn">
+                      <i class="fa-brands fa-whatsapp fa-lg"></i> YDP
+                    </a>
+                    <a href="https://wa.me/60178540321" target="_blank" class="admin-btn">
+                      <i class="fa-brands fa-whatsapp fa-lg"></i>Setiausaha
+                    </a>
+                   
+                </div>
+            </div>
+        </div>
+        </div>
+      </div>
+
+      <div id="success-card" style="display: none;">
+        <div class="checkmark-wrapper">
+            <div class="checkmark-circle">
+                <div class="checkmark-draw"></div>
+            </div>
+        </div>
+        
+        <h2>Hantaran Berjaya!</h2>
+        <p>Terima kasih. Data anda telah selamat disimpan dalam sistem kami.</p>
+    
+        <div class="committee-info">
+            <div class="member">
+                <i class="fa-solid fa-crown"></i>
+                <div class="details">
+                    <span class="label">Presiden Kelab</span>
+                    <span class="name">Muhammad Hasif bin Mohd Noor</span>
+                </div>
+            </div>
+            
+            <div class="member">
+                <i class="fa-solid fa-file-signature"></i>
+                <div class="details">
+                    <span class="label">Setiausaha</span>
+                    <span class="name">Nur Amalia Qistina Binti Badrul Hisham</span>
+                </div>
+            </div>
+        </div>
+    
+        <button onclick="window.location.reload()" class="reload-btn">
+            <i class="fa-solid fa-rotate-right"></i> Hantar Borang Baru
+        </button>
+    </div>
+     <div class="footer">
+  <div class="wrapper">
+
+    <div class="footer-logos">
+      <div class="fokus" style="padding-right: 3%; padding-top: 1%; padding-bottom: 1%;">
+        <img src="https://www.ucbestari.edu.my/wp-content/uploads/2023/12/ucb-logo-heading-2.webp">
+        <img src="https://pbs.twimg.com/media/HGp1oNLakAAl5Ea?format=png&name=small">
+      </div>
+     
+    </div>
+  
+    <div class="social-links">
+      <a href="https://www.ucbestari.edu.my/" target="_blank" title="Laman Web Rasmi">
+        <i class="fa-solid fa-globe"></i>
+      </a>
+      
+      <a href="https://www.tiktok.com/@yadim.kelab?_r=1&_t=ZS-95VWlAkDKz4" target="_blank" title="TikTok">
+        <i class="fa-brands fa-tiktok"></i>
+      </a>
+  
+      <a href="https://chat.whatsapp.com/GMsTsZT38hw4ja4i8Bzte1?mode=ems_copy_t" target="_blank" title="WhatsApp">
+        <i class="fa-brands fa-whatsapp"></i>
+      </a>
+    </div>
+  
+    <div class="footer-address">
+      Persatuan Pelajar FEPDT,<br>
+      Universiti College Bestari
+    </div>
+
+  </div>
+ 
+
+</div>
+
+<a href="https://www.tiktok.com/@yadim.kelab?_r=1&_t=ZS-95VWlAkDKz4" target="_blank" class="tiktok-fixed-btn">
+  <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M12.525.02c1.31-.022 2.616-.012 3.91-.017.318 1.591 1.024 3.107 2.147 4.267 1.413 1.478 3.382 2.39 5.418 2.493v3.949c-1.786-.051-3.55-.477-5.131-1.294-.74-.384-1.423-.879-2.015-1.471V17.89c0 1.282-.19 2.514-.544 3.673-.902 2.95-3.147 5.064-6.223 5.38-3.075.316-6.145-1.227-7.618-4.007C1.328 21.111.96 19.223.96 17.333c0-3.668 2.397-6.953 6.002-7.76 1.248-.28 2.517-.265 3.754.04v3.972c-.886-.215-1.814-.227-2.713-.07-1.526.273-2.842 1.219-3.474 2.61-.29.638-.44 1.325-.44 2.02 0 3.422 3.346 5.266 6.004 3.952 1.472-.731 2.362-2.16 2.362-3.725v-18.4c-.063-.03-.132-.056-.193-.082-.042-.018-.083-.031-.125-.042z"></path>
+  </svg>
+  <span>Follow Sekarang!</span>
+</a>
+     
+
+
+  <script>
+    const scriptURL = "https://script.google.com/macros/s/AKfycbz7JJUH1bF7ebvGIhCnEk5PIBT9gyGBAfjpXV_WpGmHbkdqvM8vWNhudPbxCXxx3vP0/exec";
+
+    const form = document.getElementById("studentForm");
+    const status = document.getElementById("status");
+
+    // 🔹 Load saved data
+    window.onload = () => {
+      const saved = JSON.parse(localStorage.getItem("studentForm"));
+      if (saved) {
+        Object.keys(saved).forEach(key => {
+          if (form.elements[key]) {
+            form.elements[key].value = saved[key];
+          }
+        });
+      }
+    };
+
+    // 🔹 Auto save on input
+    form.addEventListener("input", () => {
+      const data = {};
+      Array.from(form.elements).forEach(el => {
+        if (el.name) data[el.name] = el.value;
+      });
+      localStorage.setItem("studentForm", JSON.stringify(data));
+    });
+
+    // 🔹 Submit
+    form.addEventListener("submit", async (e) => {
+  e.preventDefault();
+
+  const submitBtn = form.querySelector('button[type="submit"]');
+  status.innerText = "Sedang dihantar... ⏳";
+  submitBtn.disabled = true; // Elakkan double submit
+
+  const formData = new FormData(form);
+
+  try {
+    const res = await fetch(scriptURL, {
+      method: "POST",
+      body: formData
+    });
+
+    const data = await res.json();
+
+    if (data.result === "duplicate") {
+      status.style.color = "#ffcc00";
+      status.innerText = "⚠️ Anda sudah menghantar borang ini sebelum ini!";
+      submitBtn.disabled = false;
+      return;
+    }
+
+    if (data.result === "success") {
+      // --- BAHAGIAN TRANSFORMASI PAGE ---
+      form.style.display = "none"; // Sorok borang
+      document.getElementById("success-card").style.display = "block"; // Tunjuk success card
+      
+      localStorage.removeItem("studentForm");
+      // ----------------------------------
+    } else {
+      status.style.color = "#ff4d4d";
+      status.innerText = "❌ Masalah Server. Sila Hubungi Setiausaha: Ahadiat";
+      submitBtn.disabled = false;
+    }
+
+  } catch (error) {
+    status.innerText = "❌ Ralat rangkaian. Sila cuba lagi.";
+    submitBtn.disabled = false;
+    console.error(error);
+  }
+});
+  </script>
+<script src="https://cdn.jsdelivr.net/npm/tom-select/dist/js/tom-select.complete.min.js"></script>
+<script>
+    new TomSelect("#programSelect", {
+      create: false,
+      sortField: {
+        field: "text",
+        direction: "asc"
+      },
+      placeholder: "Cari atau pilih program...",
+    });
+  </script>
+  <script>
+    const namaInput = document.getElementById("namaPelajar");
+  
+    namaInput.addEventListener("input", function () {
+      let value = this.value.toLowerCase().split(" ");
+      
+      value = value.map(word => {
+        return word.charAt(0).toUpperCase() + word.slice(1);
+      });
+  
+      this.value = value.join(" ");
+    });
+  </script>
+  <script>
+    const matrikInput = document.getElementById("noMatrik");
+  
+    matrikInput.addEventListener("input", function () {
+      this.value = this.value.toUpperCase();
+    });
+  </script>
+</body>
+</html>
