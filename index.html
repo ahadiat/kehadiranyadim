@@ -448,76 +448,116 @@
             }
         }
 
-        #success-card h2 {
-    color: #2e7d32;
-    margin-bottom: 10px;
+ /* Container Utama */
+#success-card {
+    background: white;
+    padding: 30px;
+    border-radius: 20px;
+    text-align: center;
+    box-shadow: 0 15px 35px rgba(0,0,0,0.1);
+    max-width: 400px;
+    margin: 20px auto;
+    font-family: 'Segoe UI', Roboto, sans-serif;
+    animation: slideUp 0.5s ease-out;
 }
 
-/* Bekas Maklumat Jawatankuasa */
+/* Animasi Ikon Berjaya */
+.success-icon-container {
+    position: relative;
+    width: 80px;
+    height: 80px;
+    margin: 0 auto 20px;
+}
+
+.success-circle {
+    width: 100%;
+    height: 100%;
+    background: #25d366;
+    border-radius: 50%;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    font-size: 40px;
+    color: white;
+    animation: popIn 0.5s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+}
+
+/* Maklumat Jawatankuasa */
 .committee-info {
-    background-color: #f9f9f9;
+    background: #f8f9fa;
+    padding: 15px;
     border-radius: 12px;
-    padding: 20px;
-    margin: 25px 0;
+    margin: 20px 0;
+    text-align: left;
     border: 1px solid #eee;
-    text-align: left; /* Nama lebih senang dibaca jika alignment ke kiri */
 }
 
 .member {
     display: flex;
     align-items: center;
-    gap: 15px;
-    margin-bottom: 15px;
+    gap: 12px;
+    margin-bottom: 12px;
 }
 
-.member:last-child {
-    margin-bottom: 0;
+.member:last-child { margin-bottom: 0; }
+
+.member i { color: #128c7e; width: 20px; }
+
+.label { font-size: 0.7rem; color: #888; font-weight: bold; text-transform: uppercase; }
+.name { font-size: 0.95rem; color: #333; font-weight: 600; }
+
+/* Butang Group WhatsApp */
+.join-group-wrapper {
+    margin-bottom: 25px;
 }
 
-/* Gaya Ikon */
-.member i {
-    font-size: 1.2rem;
-    color: #128c7e;
-    width: 25px;
-    text-align: center;
-}
+.join-group-wrapper p { font-size: 0.85rem; color: #666; margin-bottom: 10px; }
 
-.details {
+.wa-group-btn {
     display: flex;
-    flex-direction: column;
-}
-
-.label {
-    font-size: 0.75rem;
-    text-transform: uppercase;
-    color: #888;
-    letter-spacing: 1px;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+    background: #25d366;
+    color: white;
+    text-decoration: none;
+    padding: 12px;
+    border-radius: 10px;
     font-weight: bold;
-}
-
-.name {
-    font-size: 1rem;
-    color: #333;
-    font-weight: 600;
+    box-shadow: 0 4px 15px rgba(37, 211, 102, 0.3);
+    animation: pulse 2s infinite;
 }
 
 /* Butang Reload */
 .reload-btn {
-    background-color: #333;
-    color: white;
-    border: none;
-    padding: 12px 25px;
-    border-radius: 8px;
+    background: none;
+    border: 1px solid #ddd;
+    color: #999;
+    padding: 8px 15px;
+    border-radius: 6px;
     cursor: pointer;
-    font-weight: bold;
+    font-size: 0.8rem;
     transition: 0.3s;
 }
 
-.reload-btn:hover {
-    background-color: #000;
-    transform: translateY(-2px);
+.reload-btn:hover { background: #f5f5f5; color: #333; }
+
+/* Keyframes Animasi */
+@keyframes popIn {
+    0% { transform: scale(0); }
+    100% { transform: scale(1); }
 }
 
+@keyframes slideUp {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+@keyframes pulse {
+    0% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0.7); }
+    70% { box-shadow: 0 0 0 10px rgba(37, 211, 102, 0); }
+    100% { box-shadow: 0 0 0 0 rgba(37, 211, 102, 0); }
+}
     </style>
 </head>
 <body>
@@ -629,22 +669,26 @@
         </div>
         </div>
       </div>
-
       <div id="success-card" style="display: none;">
-        <div class="checkmark-wrapper">
-            <div class="checkmark-circle">
-                <div class="checkmark-draw"></div>
+        <div class="success-icon-container">
+            <div class="success-circle">
+                <i class="fa-solid fa-check"></i>
             </div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
+            <div class="confetti-piece"></div>
         </div>
-        
+    
         <h2>Hantaran Berjaya!</h2>
-        <p>Terima kasih. Data anda telah selamat disimpan dalam sistem kami.</p>
+        <p class="success-msg">Terima kasih. Data anda telah selamat disimpan dalam sistem kami.</p>
     
         <div class="committee-info">
             <div class="member">
                 <i class="fa-solid fa-crown"></i>
                 <div class="details">
-                    <span class="label">Presiden Kelab</span>
+                    <span class="label">YDP</span>
                     <span class="name">Muhammad Hasif bin Mohd Noor</span>
                 </div>
             </div>
@@ -656,6 +700,13 @@
                     <span class="name">Nur Amalia Qistina Binti Badrul Hisham</span>
                 </div>
             </div>
+        </div>
+    
+        <div class="join-group-wrapper">
+            <p>Sertai group rasmi kami untuk info lanjut:</p>
+            <a href="https://chat.whatsapp.com/H6gKwvvgJdUGNYZMbSdUFp" target="_blank" class="wa-group-btn">
+                <i class="fa-brands fa-whatsapp"></i> Join Group WhatsApp
+            </a>
         </div>
     
         <button onclick="window.location.reload()" class="reload-btn">
@@ -682,7 +733,7 @@
         <i class="fa-brands fa-tiktok"></i>
       </a>
   
-      <a href="https://chat.whatsapp.com/GMsTsZT38hw4ja4i8Bzte1?mode=ems_copy_t" target="_blank" title="WhatsApp">
+      <a href="https://chat.whatsapp.com/H6gKwvvgJdUGNYZMbSdUFp" target="_blank" title="WhatsApp">
         <i class="fa-brands fa-whatsapp"></i>
       </a>
     </div>
